@@ -1,10 +1,15 @@
+@import url('/fonts/fonts.css');
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color: #fff;
-  background-color: #242424;
+  background-color: #1d1d1d;
+
+  --panel-bg: #262626;
+  --border-color: #4d4d4d;
+  --border-radius: 12px;
 }
 
 body {

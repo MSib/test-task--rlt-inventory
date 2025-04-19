@@ -1,9 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TheInventory from '@/components/TheInventory.vue'
+</script>
 
 <template>
-  <div>
-    <p>Hello</p>
-  </div>
+  <main class="content">
+    <TheInventory />
+  </main>
 </template>
 
-<style scoped></style>
+<style>
+.content {
+  position: relative;
+}
+</style>

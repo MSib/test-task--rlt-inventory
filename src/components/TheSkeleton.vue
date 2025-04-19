@@ -32,7 +32,9 @@ function getWidth(rows: number, row: number) {
       :key="i"
       class="skeleton"
       :class="[
-        { 'skeleton--last-indentation': rows || DEFAULT_ROWS > 6 },
+        {
+          'skeleton--last-indentation': (rows || DEFAULT_ROWS) > 6 && i === (rows || DEFAULT_ROWS),
+        },
         { 'skeleton--large': large },
       ]"
       :style="{ width: `${getWidth(rows || DEFAULT_ROWS, i - 1)}%` }"

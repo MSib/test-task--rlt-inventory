@@ -25,5 +25,6 @@ import DebugPanel from '@/components/DebugPanel.vue'
 }
 .inventory__status {
   flex-basis: 100%;
+  /* TODO: width limitation  */
 }
 </style>

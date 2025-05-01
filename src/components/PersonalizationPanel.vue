@@ -30,6 +30,6 @@ import TheSkeleton from '@/components/TheSkeleton.vue'
 }
 .personalization__image {
   display: flex;
-  filter: blur(5px);
+  filter: blur(var(--blur-size));
 }
 </style>

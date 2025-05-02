@@ -55,8 +55,10 @@ function getWidth(rows: number, row: number) {
   width: 100%;
   height: 10px;
   border-radius: 4px;
-  background-color: var(--border-color);
   background-image: linear-gradient(0.25turn, #3c3c3c 15%, #444444 50%, #333333 85%);
+  background-size: 400%;
+  background-position: left;
+  animation: skeleton 2s infinite alternate;
 }
 .skeleton:first-of-type {
   height: 26px;
@@ -68,5 +70,16 @@ function getWidth(rows: number, row: number) {
 .skeleton:first-of-type.skeleton--large {
   height: 36px;
   border-radius: 12px;
+}
+@keyframes skeleton {
+  from {
+    background-position: left;
+  }
+  50% {
+    background-position: center;
+  }
+  to {
+    background-position: right;
+  }
 }
 </style>

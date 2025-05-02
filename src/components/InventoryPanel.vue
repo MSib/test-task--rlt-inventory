@@ -6,7 +6,7 @@ import DescriptionPanel from '@/components/DescriptionPanel.vue'
 import type { InventoryItem } from '@/types.ts'
 
 const store = useMainStore()
-const {} = store
+const { moveItem } = store
 const { inventory } = storeToRefs(store)
 
 const descriptionItem = ref<InventoryItem | null>(null)
@@ -40,6 +40,18 @@ function onTransitionEnd() {
 function onDelete() {
   console.log('delete')
 }
+
+function onDrag(evt: DragEvent, item: InventoryItem) {
+  if (evt.dataTransfer) {
+    evt.dataTransfer.dropEffect = 'move'
+    evt.dataTransfer.effectAllowed = 'move'
+    evt.dataTransfer.setData('itemId', item.id.toString())
+  }
+}
+
+function onDrop(evt: DragEvent, item: InventoryItem) {
+  moveItem(Number(evt.dataTransfer!.getData('itemId')), item?.id)
+}
 </script>
 
 <template>
@@ -49,6 +61,10 @@ function onDelete() {
         v-for="(item, index) in inventory.items"
         :key="item.id"
         @click="onClick(item)"
+        @dragstart="onDrag($event, item)"
+        @drop="onDrop($event, item)"
+        @dragover.prevent
+        @dragenter.prevent
         class="inventory-panel__item item"
         :class="[
           { 'item--left': index % inventory.rows === 0 },
@@ -56,6 +72,7 @@ function onDelete() {
           { 'item--top': index < inventory.rows },
           // { 'item--bottom': inventory.rows * inventory.columns - index <= inventory.rows },
         ]"
+        :draggable="!isDialogOpen && !item?.empty"
       >
         <template v-if="!item?.empty">
           <picture v-if="item.image" class="item__image">
@@ -130,6 +147,7 @@ function onDelete() {
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 .item__image img {
   width: 100%;

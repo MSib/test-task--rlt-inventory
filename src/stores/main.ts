@@ -48,9 +48,21 @@ export const useMainStore = defineStore('main', () => {
     }
   }
 
+  function moveItem(fromId: number, toId: number) {
+    const fromItemIndex = inventory.value.items.findIndex((item) => item.id === fromId)
+    const toItemIndex = inventory.value.items.findIndex((item) => item.id === toId)
+    if (fromId === toId || fromItemIndex < 0 || toItemIndex < 0) {
+      return
+    }
+    const item = inventory.value.items[fromItemIndex]
+    inventory.value.items[fromItemIndex] = inventory.value.items[toItemIndex]
+    inventory.value.items[toItemIndex] = item
+  }
+
   return {
     inventory,
     resetInventory,
     addRandomItem,
+    moveItem,
   }
 })

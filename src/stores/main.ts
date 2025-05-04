@@ -59,10 +59,26 @@ export const useMainStore = defineStore('main', () => {
     inventory.value.items[toItemIndex] = item
   }
 
+  /** Returns true if the item was removed */
+  function removeItem(id: number, count: number): boolean {
+    count = count < 0 ? 0 : Math.floor(count)
+    const itemIndex = inventory.value.items.findIndex((item) => item.id === id)
+    if (itemIndex < 0) {
+      return false
+    }
+    inventory.value.items[itemIndex].quantity -= count
+    if (inventory.value.items[itemIndex].quantity <= 0) {
+      inventory.value.items[itemIndex] = createItem(id, true)
+      return true
+    }
+    return false
+  }
+
   return {
     inventory,
     resetInventory,
     addRandomItem,
     moveItem,
+    removeItem,
   }
 })

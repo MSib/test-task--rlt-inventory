@@ -6,7 +6,7 @@ import DescriptionPanel from '@/components/DescriptionPanel.vue'
 import type { InventoryItem } from '@/types.ts'
 
 const store = useMainStore()
-const { moveItem } = store
+const { moveItem, removeItem } = store
 const { inventory } = storeToRefs(store)
 
 const descriptionItem = ref<InventoryItem | null>(null)
@@ -29,16 +29,18 @@ function onClose() {
   isDialogClosing.value = true
 }
 
+function onDelete(itemId: number, count: number) {
+  if (removeItem(itemId, count)) {
+    onClose()
+  }
+}
+
 function onTransitionEnd() {
   if (isDialogClosing.value) {
     isDialogOpen.value = false
     descriptionItem.value = null
     isDialogClosing.value = false
   }
-}
-
-function onDelete() {
-  console.log('delete')
 }
 
 function onDrag(evt: DragEvent, item: InventoryItem) {
@@ -177,6 +179,7 @@ function onDrop(evt: DragEvent, item: InventoryItem) {
   margin: 0;
   padding: 0;
   width: 250px;
+  display: flex;
   border-left: 1px solid var(--border-color);
   transform: translateX(100%);
   will-change: transform, opacity;

@@ -1,7 +1,7 @@
 @import url('/fonts/fonts.css');
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #fff;
@@ -11,6 +11,8 @@
   --border-color: #4d4d4d;
   --border-radius: 12px;
   --blur-size: 6px;
+  --color-primary-red: #fa7272;
+  --color-primary-red-dark: #ce6d6d;
 }
 
 body {
@@ -21,4 +23,16 @@ body {
 #app {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.button {
+  margin: 0;
+  padding: 10px;
+  font-family: 'SFProDisplay', sans-serif;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  color: #2d2d2d;
+  background-color: #fff;
+  border-radius: 8px;
 }

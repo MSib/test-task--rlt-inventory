@@ -8,23 +8,29 @@ import DebugPanel from '@/components/DebugPanel.vue'
 <template>
   <DebugPanel />
   <div class="inventory">
-    <PersonalizationPanel />
-    <InventoryPanel />
+    <div class="inventory__wrapper">
+      <PersonalizationPanel />
+      <InventoryPanel />
+    </div>
     <StatusPanel class="inventory__status" />
   </div>
 </template>
 
 <style>
 .inventory {
-  position: relative;
   padding: 32px;
+  display: grid;
+  grid-template-columns: fit-content(100%);
+  gap: 24px;
+}
+.inventory__wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: start;
   gap: 24px;
+  overflow: auto;
 }
 .inventory__status {
   flex-basis: 100%;
-  /* TODO: width limitation  */
 }
 </style>
